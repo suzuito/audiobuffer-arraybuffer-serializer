@@ -2,15 +2,36 @@
   "name": "audiobuffer-arraybuffer-serializer",
   "version": "1.0.0",
   "description": "AudioBuffer serializer",
+  "keywords": [
+    "audio",
+    "audiojs",
+    "pcm",
+    "sound",
+    "audio-buffer",
+    "web-audio",
+    "serializer",
+    "deserializer",
+    "serialize",
+    "deserialize",
+    "arraybuffer"
+  ],
+  "author": {
+    "name": "Taito Suzuki <taito0625@gmail.com>",
+    "url": "https://github.com/suzuito"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suzuito/audiobuffer-arraybuffer-serializer"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && mkdir dist && rollup --config",
+    "build": "npm run clean && mkdir dist && rollup --config --banner \"$(preamble)\"",
     "test": "npm run build && nyc mocha --recursive",
-    "test-report": "npm run test && nyc report --reporter=lcov --reporter=text"
+    "test-report": "npm run test && nyc report --reporter=lcov --reporter=text",
+    "test-browser": "http-server"
   },
-  "author": "Taito Suzuki <taito0625@gmail.com>",
-  "license": "MIT",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -21,6 +42,7 @@
     "http-server": "^0.11.1",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
+    "package-preamble": "^0.1.0",
     "rollup": "^0.54.0",
     "sinon": "^4.1.4"
   },

@@ -1,3 +1,4 @@
+// audiobuffer-arraybuffer-serializer Version 1.0.0. Copyright 2018 Taito Suzuki <taito0625@gmail.com>.
 var aas = (function (exports) {
 'use strict';
 

@@ -17,6 +17,7 @@ npm run test-report
 
 Show coverage report
 ```bash
+npm run test-browser
 open ./coverage/lcov-report/index.html
 ```
 
