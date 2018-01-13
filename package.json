@@ -1,5 +1,5 @@
 {
-  "name": "audiobuffer-arraybuffer-converter",
+  "name": "audiobuffer-arraybuffer-serializer",
   "version": "1.0.0",
   "description": "AudioBuffer serializer",
   "main": "index.js",

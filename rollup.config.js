@@ -1,5 +1,5 @@
 export default {
-  input: 'src/audiobuffer-arraybuffer-converter.js',
+  input: 'src/audiobuffer-arraybuffer-serializer.js',
   output: [
     {
       file: 'dist/main.cjs.js',
@@ -8,7 +8,7 @@ export default {
     {
       file: 'dist/main.iife.js',
       format: 'iife',
-      name: 'aaconv',
+      name: 'aas',
     }
   ]
 }
