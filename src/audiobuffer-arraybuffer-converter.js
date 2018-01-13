@@ -1,5 +1,14 @@
 //import { AudioBuffer } from 'audio-buffer';
-const AudioBuffer = require('audio-buffer');
+
+function generateAudioBuffer(conf) {
+  if (typeof AudioBuffer === 'undefined')
+    return new require('audio-buffer')(conf);
+  return new AudioBuffer(conf);
+}
+
+function isInstanceOfAudioBuffer(v) {
+  return (v.constructor.name === 'AudioBuffer');
+}
 
 export class InvalidBufferLengthError extends Error {
   constructor(expected, real) {
@@ -62,7 +71,7 @@ export class Encoder extends Base {
     return generateDestinationBufferOnEncoder(src);
   }
   checkSrcExecute(src) {
-    if (src instanceof AudioBuffer === false) { throw new TypeError(`'src' must be instance of AudioBuffer`); }
+    if (isInstanceOfAudioBuffer(src) === false) { throw new TypeError(`'src' must be instance of AudioBuffer`); }
   }
   checkDstExecute(dst) {
     if (dst instanceof ArrayBuffer === false) { throw new TypeError(`'dst' must be instance of ArrayBuffer`); }
@@ -115,7 +124,7 @@ export class Decoder extends Base {
     if (src instanceof ArrayBuffer === false) { throw new TypeError(`'src' must be instance of ArrayBuffer`); }
   }
   checkDstExecute(dst) {
-    if (dst instanceof AudioBuffer === false) { throw new TypeError(`'dst' must be instance of AudioBuffer`); }
+    if (isInstanceOfAudioBuffer(dst) === false) { throw new TypeError(`'dst' must be instance of AudioBuffer`); }
   }
   each(src, dst) {
     return decode(src, dst, this.littleEndian);
@@ -127,7 +136,7 @@ export class Decoder extends Base {
 
 function generateDestinationBufferOnDecoder(src, littleEndian) {
   let dv = new DataView(src);
-  return new AudioBuffer({
+  return generateAudioBuffer({
     sampleRate: dv.getFloat32(0, littleEndian),
     length: dv.getUint32(8, littleEndian),
     numberOfChannels: dv.getUint32(12, littleEndian),

@@ -8,7 +8,7 @@ export default {
     {
       file: 'dist/main.iife.js',
       format: 'iife',
-      name: 'AudiobufferArraybufferConverter',
+      name: 'aaconv',
     }
   ]
 }

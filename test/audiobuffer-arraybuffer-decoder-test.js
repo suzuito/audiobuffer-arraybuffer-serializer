@@ -1,19 +1,9 @@
 'use strict';
-const helper = require('./helper');
+if (typeof module !== 'undefined') {
+  var helper = require('./helper');
+}
 
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const assert = require('chai').assert;
-
-const AudioBuffer = require('audio-buffer');
-const Decoder = require('../dist/main.cjs').Decoder;
-
-const InvalidParameterError = require('../dist/main.cjs').InvalidParameterError;
-const InvalidAudioBufferLengthError = require('../dist/main.cjs').InvalidAudioBufferLengthError;
-const InvalidSampleRateError = require('../dist/main.cjs').InvalidSampleRateError;
-const InvalidNumberOfChannelsError = require('../dist/main.cjs').InvalidNumberOfChannelsError;
-
-function shouldSuccess(conf, decoder, channels, done) {
+function shouldSuccessDecoder(conf, decoder, channels, done) {
   let src = helper.arrayBuffer(conf);
   let dv = new DataView(src);
   dv.setFloat32( 0, conf.sampleRate, decoder.littleEndian);
@@ -41,43 +31,30 @@ function shouldSuccess(conf, decoder, channels, done) {
 }
 
 describe('audiobuffer-decoder', () => {
-  describe('Channel:0 should be success', () => {
-    let conf = null, channels = null;
-    before(() => {
-      conf = { length: 2, numberOfChannels: 0, sampleRate: 12, };
-      channels = [];
-    });
-    it('Little endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: true, }), channels, done);
-    });
-    it('Big endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: false, }), channels, done);
-    });
-  });
   describe('Channel:1 should be success', () => {
     let conf = null, channels = null;
     before(() => {
-      conf = { length: 2, numberOfChannels: 1, sampleRate: 12, };
+      conf = { length: 2, numberOfChannels: 1, sampleRate: 12000, };
       channels = [ helper.f32(1.0, 2.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: true, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: false, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: false, }), channels, done);
     });
   });
   describe('Channel:2 should be success', () => {
     let conf = null, channels = null;
     before(() => {
-      conf = { length: 2, numberOfChannels: 2, sampleRate: 12, };
+      conf = { length: 2, numberOfChannels: 2, sampleRate: 12000, };
       channels = [ helper.f32(1.0, 2.0), helper.f32(3.0, 4.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: true, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: false, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: false, }), channels, done);
     });
   });
   describe('Channel:3 should be success', () => {
@@ -87,10 +64,10 @@ describe('audiobuffer-decoder', () => {
       channels = [ helper.f32(1.0, 2.0), helper.f32(3.0, 4.0), helper.f32(5.0, 6.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: true, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Decoder({ littleEndian: false, }), channels, done);
+      shouldSuccessDecoder(conf, new Decoder({ littleEndian: false, }), channels, done);
     });
   });
   it('Should be parameter error', done => {
@@ -110,22 +87,22 @@ describe('audiobuffer-decoder', () => {
       dv.setUint32(12, 3, true);
     });
     it('Too short buffer length', done => {
-      let dst = new AudioBuffer({length: 3, numberOfChannels: 3, sampleRate: 12000});
+      let dst = helper.audioBuffer({length: 3, numberOfChannels: 3, sampleRate: 12000});
       assert.throws(() => decoder.execute(src, dst), InvalidAudioBufferLengthError, `Expected audio buffer length is '5' but real is '3'`);
       done();
     });
     it('Too long buffer length', done => {
-      let dst = new AudioBuffer({length: 300, numberOfChannels: 3, sampleRate: 12000});
+      let dst = helper.audioBuffer({length: 300, numberOfChannels: 3, sampleRate: 12000});
       assert.throws(() => decoder.execute(src, dst), InvalidAudioBufferLengthError, `Expected audio buffer length is '5' but real is '300'`);
       done();
     });
     it('Different sampleRate', done => {
-      let dst = new AudioBuffer({length: 5, numberOfChannels: 3, sampleRate: 3});
-      assert.throws(() => decoder.execute(src, dst), InvalidSampleRateError, `Expected audio buffer sampleRate is '12000' but real is '3'`);
+      let dst = helper.audioBuffer({length: 5, numberOfChannels: 3, sampleRate: 12001});
+      assert.throws(() => decoder.execute(src, dst), InvalidSampleRateError, `Expected audio buffer sampleRate is '12000' but real is '12001'`);
       done();
     });
     it('Different numberOfChannels', done => {
-      let dst = new AudioBuffer({length: 5, numberOfChannels: 1, sampleRate: 12000});
+      let dst = helper.audioBuffer({length: 5, numberOfChannels: 1, sampleRate: 12000});
       assert.throws(() => decoder.execute(src, dst), InvalidNumberOfChannelsError, `Expected audio buffer numberOfChannels is '3' but real is '1'`);
       done();
     });

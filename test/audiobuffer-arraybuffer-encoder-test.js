@@ -1,20 +1,12 @@
 'use strict';
-const helper = require('./helper');
+if (typeof module !== 'undefined') {
+  var helper = require('./helper');
+}
 
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const assert = require('chai').assert;
-
-const AudioBuffer = require('audio-buffer');
-const Encoder = require('../dist/main.cjs').Encoder;
-
-const InvalidParameterError = require('../dist/main.cjs').InvalidParameterError;
-const InvalidBufferLengthError = require('../dist/main.cjs').InvalidBufferLengthError;
-
-function shouldSuccess(conf, encoder, channels, done) {
+function shouldSuccessEncoder(conf, encoder, channels, done) {
   let src = helper.audioBuffer(conf);
   for (let c = 0; c < channels.length; c++) {
-    src.copyFromChannel(c, channels[c], 0);
+    src.copyToChannel(channels[c], c, 0);
   }
   let dst = encoder.execute(src);
   expect(dst.byteLength).to.equal(
@@ -34,19 +26,6 @@ function shouldSuccess(conf, encoder, channels, done) {
 }
 
 describe('audiobuffer-encoder', () => {
-  describe('Channel:0 should be success', () => {
-    let conf = null, channels = null;
-    before(() => {
-      conf = { length: 2, numberOfChannels: 0, sampleRate: 12000 };
-      channels = [];
-    });
-    it('Little endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: true, }), channels, done);
-    });
-    it('Big endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: false, }), channels, done);
-    });
-  });
   describe('Channel:1 should be success', () => {
     let conf = null, channels = null;
     before(() => {
@@ -54,10 +33,10 @@ describe('audiobuffer-encoder', () => {
       channels = [ helper.f32(1.0, 2.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: true, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: false, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: false, }), channels, done);
     });
   });
   describe('Channel:2 should be success', () => {
@@ -67,10 +46,10 @@ describe('audiobuffer-encoder', () => {
       channels = [ helper.f32(1.0, 2.0), helper.f32(3.0, 4.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: true, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: false, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: false, }), channels, done);
     });
   });
   describe('Channel:3 should be success', () => {
@@ -80,22 +59,24 @@ describe('audiobuffer-encoder', () => {
       channels = [ helper.f32(1.0, 2.0), helper.f32(3.0, 4.0), helper.f32(5.0, 6.0), ];
     });
     it('Little endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: true, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: true, }), channels, done);
     });
     it('Big endian', done => {
-      shouldSuccess(conf, new Encoder({ littleEndian: false, }), channels, done);
+      shouldSuccessEncoder(conf, new Encoder({ littleEndian: false, }), channels, done);
     });
   });
   it('Should be parameter error', done => {
     let encoder = new Encoder();
     assert.throws(() => encoder.execute(1), TypeError, `'src' must be instance of AudioBuffer`);
-    assert.throws(() => encoder.execute(new AudioBuffer(), 1), TypeError, `'dst' must be instance of ArrayBuffer`);
+    assert.throws(() => {
+      encoder.execute(helper.audioBuffer({length: 3, numberOfChannels: 2, sampleRate: 12000}), 1);
+    }, TypeError, `'dst' must be instance of ArrayBuffer`);
     done();
   });
   describe('Should be invalid buffer length error', (done) => {
     let conf = null, encoder = null, src = null;
     before(() => {
-      conf = {length: 2, numberOfChannels: 3, sampleRate: 12};
+      conf = {length: 2, numberOfChannels: 3, sampleRate: 12000};
       encoder = new Encoder();
       src = helper.audioBuffer(conf);
     });
