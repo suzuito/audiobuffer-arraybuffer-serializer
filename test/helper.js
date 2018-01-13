@@ -16,10 +16,10 @@ module.exports.arrayBuffer = (conf) => {
   return ab;
 }
 
-module.exports.f32 = (elems) => {
-  let ret = new Float32Array(elems.length);
-  for (let i = 0; i < elems.length; i++) {
-    ret[i] = elems[i];
+module.exports.f32 = function () {
+  let ret = new Float32Array(arguments.length);
+  for (let i = 0; i < arguments.length; i++) {
+    ret[i] = arguments[i];
   }
   return ret;
 }
