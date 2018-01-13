@@ -1,4 +1,4 @@
-var aaconv = (function (exports) {
+var aas = (function (exports) {
 'use strict';
 
 //import { AudioBuffer } from 'audio-buffer';

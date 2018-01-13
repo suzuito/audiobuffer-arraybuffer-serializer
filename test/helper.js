@@ -45,14 +45,14 @@ if (typeof module !== 'undefined') {
     arrayBuffer: arrayBuffer,
     f32: f32,
   };
-  var Encoder = aaconv.Encoder;
-  var Decoder = aaconv.Decoder;
+  var Encoder = aas.Encoder;
+  var Decoder = aas.Decoder;
   var assert = chai.assert;
   var expect = chai.expect;
-  var InvalidParameterError = aaconv.InvalidParameterError;
-  var InvalidAudioBufferLengthError = aaconv.InvalidAudioBufferLengthError;
-  var InvalidSampleRateError = aaconv.InvalidSampleRateError;
-  var InvalidNumberOfChannelsError = aaconv.InvalidNumberOfChannelsError;
-  var InvalidParameterError = aaconv.InvalidParameterError;
-  var InvalidBufferLengthError = aaconv.InvalidBufferLengthError;
+  var InvalidParameterError = aas.InvalidParameterError;
+  var InvalidAudioBufferLengthError = aas.InvalidAudioBufferLengthError;
+  var InvalidSampleRateError = aas.InvalidSampleRateError;
+  var InvalidNumberOfChannelsError = aas.InvalidNumberOfChannelsError;
+  var InvalidParameterError = aas.InvalidParameterError;
+  var InvalidBufferLengthError = aas.InvalidBufferLengthError;
 }
