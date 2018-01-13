@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && mkdir dist && rollup src/audiobuffer-arraybuffer-converter.js -f cjs -o dist/main.cjs.js",
+    "build": "npm run clean && mkdir dist && rollup --config",
     "test": "npm run build && nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text"
   },
