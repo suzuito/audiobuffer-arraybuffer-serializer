@@ -1,5 +1,5 @@
 //import { AudioBuffer } from 'audio-buffer';
-let AudioBuffer = require('audio-buffer');
+const AudioBuffer = require('audio-buffer');
 
 export class InvalidBufferLengthError extends Error {
   constructor(expected, real) {
