@@ -3,6 +3,7 @@ const helper = require('./helper');
 
 const sinon = require('sinon');
 const expect = require('chai').expect;
+const assert = require('chai').assert;
 
 const AudioBuffer = require('audio-buffer');
 const Encoder = require('../dist/main.cjs').Encoder;
@@ -33,13 +34,6 @@ function shouldSuccess(conf, encoder, channels, done) {
 }
 
 describe('audiobuffer-encoder', () => {
-  let encoder = null;
-  let confEncoder = {};
-  before((done) => {
-    confEncoder.littleEndian = true;
-    encoder = new Encoder(confEncoder);
-    done();
-  });
   describe('Channel:0 should be success', () => {
     let conf = null, channels = null;
     before(() => {
@@ -92,17 +86,26 @@ describe('audiobuffer-encoder', () => {
       shouldSuccess(conf, new Encoder({ littleEndian: false, }), channels, done);
     });
   });
-  it('Should be parameter error', (done) => {
-    expect(() => encoder.execute(1)).to.throw(InvalidParameterError);
-    expect(() => encoder.execute()).to.throw(InvalidParameterError);
-    expect(() => encoder.execute(new AudioBuffer(), 2)).to.throw(InvalidParameterError);
-    expect(() => encoder.execute(new AudioBuffer(), null)).to.throw(InvalidParameterError);
+  it('Should be parameter error', done => {
+    let encoder = new Encoder();
+    assert.throws(() => encoder.execute(1), TypeError, `'src' must be instance of AudioBuffer`);
+    assert.throws(() => encoder.execute(new AudioBuffer(), 1), TypeError, `'dst' must be instance of ArrayBuffer`);
     done();
   });
-  it('Should be invalid buffer error', (done) => {
-    let src = helper.audioBuffer({length: 2, numberOfChannels: 3, sampleRate: 12000});
-    expect(() => encoder.execute(src, new ArrayBuffer(1))).to.throw(InvalidBufferLengthError);
-    expect(() => encoder.execute(src, new ArrayBuffer(10000))).to.throw(InvalidBufferLengthError);
-    done();
+  describe('Should be invalid buffer length error', (done) => {
+    let conf = null, encoder = null, src = null;
+    before(() => {
+      conf = {length: 2, numberOfChannels: 3, sampleRate: 12};
+      encoder = new Encoder();
+      src = helper.audioBuffer(conf);
+    });
+    it('Too short', done => {
+      assert.throws(() => encoder.execute(src, new ArrayBuffer(1)), InvalidBufferLengthError, `Expected buffer length is '40' but real is '1'`);
+      done();
+    });
+    it('Too large', done => {
+      assert.throws(() => encoder.execute(src, new ArrayBuffer(1000)), InvalidBufferLengthError, `Expected buffer length is '40' but real is '1000'`);
+      done();
+    });
   });
 });
