@@ -1,7 +1,7 @@
 {
   "name": "audiobuffer-arraybuffer-converter",
   "version": "1.0.0",
-  "description": "",
+  "description": "AudioBuffer serializer",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
@@ -9,8 +9,8 @@
     "test": "npm run build && nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Taito Suzuki <taito0625@gmail.com>",
+  "license": "MIT",
   "engines": {
     "node": ">=8.0.0"
   },
