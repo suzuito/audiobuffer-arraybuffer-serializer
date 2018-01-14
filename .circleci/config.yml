@@ -53,12 +53,12 @@ workflows:
           filters:
             branches:
               only: master
-#  nightly:
+  nightly:
 #    triggers:
 #      - schedule:
 #        cron: "0 12 * * *"
-#    jobs:
-#      - build
+    jobs:
+      - build
 
 
 # Environment variables
