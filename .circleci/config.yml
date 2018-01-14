@@ -25,6 +25,8 @@ jobs:
       - image: circleci/node:8
 
     steps:
+      - run: git config --global user.email "suzuito3@gmail.com"
+      - run: git config --global user.name "circleci"
       - checkout
       - restore_cache:
           keys:
@@ -38,8 +40,6 @@ jobs:
       - run: npm run test-report
       - run: npm version $WHICH_VERSION
       - run: npm publish
-      - run: git config --global user.email suzuito3@gmail.com
-      - run: git config --global user.name circleci
       - run: git push origin
       - run: git push origin --tags
 workflows:
