@@ -38,7 +38,6 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm install
       - run: npm run test-report
-#      - run: npm version `./.circleci/version`
       - run: npm publish
       - run: git tag v`./.circleci/version`
       - run: git push origin --tags
@@ -53,12 +52,15 @@ workflows:
           filters:
             branches:
               only: master
-  #nightly:
-  #  triggers:
-  #    - schedule:
-  #        cron: "0 3 * * *" # utc
-  #  jobs:
-  #    - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 3 * * *" # utc
+    jobs:
+      - build
+        filters:
+          branches:
+            only: master
 
 
 # Environment variables
