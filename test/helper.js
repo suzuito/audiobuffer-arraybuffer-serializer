@@ -1,3 +1,5 @@
+'use strict';
+
 function dataView(ab) {
   return new DataView(ab);
 }
