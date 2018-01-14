@@ -5,6 +5,8 @@ audiobuffer-arraybuffer-serializer
 
 [![](./img/GitHub-Mark-32px.png)](https://github.com/suzuito/audiobuffer-arraybuffer-serializer)
 
+[![CircleCI](https://circleci.com/gh/suzuito/audiobuffer-arraybuffer-serializer/tree/master.svg?style=svg)](https://circleci.com/gh/suzuito/audiobuffer-arraybuffer-serializer/tree/master)
+
 AudioBuffer serializer.
 Provide a serializer between AudioBuffer and ArrayBuffer.
 
