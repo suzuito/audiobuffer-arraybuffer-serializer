@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-process.stdin.write(require('../package.json').version);
+console.log(require('../package.json').version);
