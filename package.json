@@ -31,7 +31,7 @@
     "test": "npm run build && nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text",
     "test-browser": "http-server",
-    "doc": "jsdoc src -d ./jsdoc --readme ./README.md"
+    "doc": "jsdoc src -d ./docs --readme ./README.md"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -42,7 +42,6 @@
     "eslint": "^4.15.0",
     "http-server": "^0.11.1",
     "jsdoc": "^3.5.5",
-    "jsdox": "^0.4.10",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
     "package-preamble": "^0.1.0",
