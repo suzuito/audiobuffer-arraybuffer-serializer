@@ -23,8 +23,7 @@ jobs:
   publish:
     docker:
       - image: circleci/node:8
-    environment:
-      - NPM_TOKEN: "Set this!"
+
     steps:
       - checkout
       - restore_cache:
