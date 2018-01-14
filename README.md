@@ -85,12 +85,12 @@ npm install
 ### Build distributed javascript file(Run unit test)
 
 ```bash
-npm run test-report
+npm run test-report-dev
 ```
 
 Show coverage report
 ```bash
-npm run test-browser
+npm run test-browser-dev
 open ./coverage/lcov-report/index.html
 ```
 
@@ -99,10 +99,16 @@ open ./coverage/lcov-report/index.html
 |node.js|./main.js|
 |browser|./aas.js|
 
+Version up
+```bash
+npm version patch
+git push origin --tags
+```
+
 ### Browser test
 
 ```bash
-npm run test-report
+npm run test-report-dev
 open test/index.html
 ```
 
