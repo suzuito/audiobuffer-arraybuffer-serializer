@@ -38,7 +38,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm install
       - run: npm run test-report
-      - run: npm version {{ ./.circleci/version }}
+      - run: npm version `./.circleci/version`
       - run: npm publish
       - run: git push origin --tags
 workflows:
