@@ -52,12 +52,12 @@ workflows:
           filters:
             branches:
               only: master
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 3 * * *" # utc
-    jobs:
-      - build
+  #nightly:
+  #  triggers:
+  #    - schedule:
+  #        cron: "0 3 * * *" # utc
+  #  jobs:
+  #    - build
 
 
 # Environment variables
