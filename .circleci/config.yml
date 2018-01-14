@@ -57,7 +57,7 @@ workflows:
       - schedule:
           cron: "0 3 * * *" # utc
     jobs:
-      - build
+      - build:
         filters:
           branches:
             only: master
