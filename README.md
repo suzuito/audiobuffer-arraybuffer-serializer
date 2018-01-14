@@ -3,7 +3,7 @@ audiobuffer-arraybuffer-serializer
 
 [![npm](https://img.shields.io/npm/v/audiobuffer-arraybuffer-serializer.svg?style=social)](https://www.npmjs.com/package/audiobuffer-arraybuffer-serializer)
 
-[![](./img/GitHub-Mark-32px.png)](https://github.com/suzuito/audiobuffer-arraybuffer-serializer)
+[![](/img/GitHub-Mark-32px.png)](https://github.com/suzuito/audiobuffer-arraybuffer-serializer)
 
 AudioBuffer serializer.
 Provide a serializer between AudioBuffer and ArrayBuffer.
