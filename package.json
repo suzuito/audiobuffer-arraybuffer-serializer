@@ -1,6 +1,6 @@
 {
   "name": "audiobuffer-arraybuffer-serializer",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "description": "AudioBuffer serializer",
   "keywords": [
     "audio",
