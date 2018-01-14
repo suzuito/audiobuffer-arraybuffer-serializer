@@ -28,8 +28,9 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && mkdir dist && rollup --config --banner \"$(preamble)\"",
-    "test": "npm run build && nyc mocha --recursive",
+    "test": "nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text",
+    "test-report-dev": "npm run build && npm run test && nyc report --reporter=lcov --reporter=text",
     "test-browser": "http-server",
     "doc": "jsdoc src -d ./docs --readme ./README.md --configure ./jsdoc.json"
   },
