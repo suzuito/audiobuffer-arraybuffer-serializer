@@ -2,11 +2,11 @@ export default {
   input: 'src/audiobuffer-arraybuffer-serializer.js',
   output: [
     {
-      file: 'dist/main.cjs.js',
+      file: 'main.js',
       format: 'cjs',
     },
     {
-      file: 'dist/main.iife.js',
+      file: 'aas.js',
       format: 'iife',
       name: 'aas',
     }

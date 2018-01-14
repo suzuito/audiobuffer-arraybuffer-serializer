@@ -1,6 +1,7 @@
-// audiobuffer-arraybuffer-serializer Version 1.0.0. Copyright 2018 Taito Suzuki <taito0625@gmail.com>.
-var aas = (function (exports) {
+// audiobuffer-arraybuffer-serializer Version 0.0.0. Copyright 2018 Taito Suzuki <suzuito3@gmail.com>.
 'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 //import { AudioBuffer } from 'audio-buffer';
 
@@ -176,7 +177,3 @@ exports.InvalidNumberOfChannelsError = InvalidNumberOfChannelsError;
 exports.InvalidDurationError = InvalidDurationError;
 exports.Encoder = Encoder;
 exports.Decoder = Decoder;
-
-return exports;
-
-}({}));

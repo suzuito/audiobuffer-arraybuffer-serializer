@@ -1,4 +1,7 @@
-//import { AudioBuffer } from 'audio-buffer';
+/**
+ * 
+ * @param {*} conf 
+ */
 
 function generateAudioBuffer(conf) {
   if (typeof AudioBuffer === 'undefined')
@@ -62,7 +65,21 @@ class Base {
   }
 }
 
+/** Configuration for Encoder/Decoder
+ * @property {boolean} littleEndian - Specify whether use littleEndian or not.
+ */
+export class Configuration {
+  constructor(littleEndian) {
+    this.littleEndian = littleEndian;
+  }
+}
+
+/** Serialize {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer AudioBuffer} to {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer ArrayBuffer}.
+ */
 export class Encoder extends Base {
+  /**
+   * @param {Configuration} conf Configuration object.
+   */
   constructor(conf) {
     if (!conf) conf = {};
     super(conf);
@@ -81,6 +98,15 @@ export class Encoder extends Base {
   }
   validate(src, dst) {
     validateOnEncoder(src, dst);
+  }
+  /**
+   * Serialize AudioBuffer to ArrayBuffer.
+   * 
+   * @param {AudioBuffer} src 
+   * @param {ArrayBuffer} [dst] If not specified, generate ArrayBuffer object in this method.
+   */
+  execute(src, dst) {
+    return super.execute(src, dst);
   }
 }
 
@@ -112,7 +138,12 @@ function encode(src, dst, littleEndian) {
   return dst;
 }
 
+/** Deserialize {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer ArrayBuffer} to {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer AudioBuffer}.
+ */
 export class Decoder extends Base {
+  /**
+   * @param {Configuration} conf Configuration object.
+   */
   constructor(conf) {
     if (!conf) conf = {};
     super(conf);
@@ -131,6 +162,15 @@ export class Decoder extends Base {
   }
   validate(src, dst) {
     validateOnDecoder(src, dst, this.littleEndian)
+  }
+  /**
+   * Serialize AudioBuffer to ArrayBuffer.
+   * 
+   * @param {ArrayBuffer} src 
+   * @param {AudioBuffer} [dst] If not specified, generate AudioBuffer object in this method.
+   */
+  execute(src, dst) {
+    return super.execute(src, dst);
   }
 }
 

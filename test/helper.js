@@ -30,14 +30,14 @@ if (typeof module !== 'undefined') {
   module.exports.f32 = f32;
   global.expect = require('chai').expect;
   global.assert = require('chai').assert;
-  global.Encoder = require('../dist/main.cjs').Encoder;
-  global.Decoder = require('../dist/main.cjs').Decoder;
-  global.InvalidParameterError = require('../dist/main.cjs').InvalidParameterError;
-  global.InvalidAudioBufferLengthError = require('../dist/main.cjs').InvalidAudioBufferLengthError;
-  global.InvalidSampleRateError = require('../dist/main.cjs').InvalidSampleRateError;
-  global.InvalidNumberOfChannelsError = require('../dist/main.cjs').InvalidNumberOfChannelsError;
-  global.InvalidParameterError = require('../dist/main.cjs').InvalidParameterError;
-  global.InvalidBufferLengthError = require('../dist/main.cjs').InvalidBufferLengthError;
+  global.Encoder = require('../main').Encoder;
+  global.Decoder = require('../main').Decoder;
+  global.InvalidParameterError = require('../main').InvalidParameterError;
+  global.InvalidAudioBufferLengthError = require('../main').InvalidAudioBufferLengthError;
+  global.InvalidSampleRateError = require('../main').InvalidSampleRateError;
+  global.InvalidNumberOfChannelsError = require('../main').InvalidNumberOfChannelsError;
+  global.InvalidParameterError = require('../main').InvalidParameterError;
+  global.InvalidBufferLengthError = require('../main').InvalidBufferLengthError;
 } else {
   var helper = {
     dataView: dataView,
