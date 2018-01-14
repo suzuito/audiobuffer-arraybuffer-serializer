@@ -40,8 +40,8 @@ workflows:
     jobs:
       - build
       - publish:
-        - requires:
-          - build
-        - filters:
-          branches:
-            only: master
+          equires:
+            - build
+          filters:
+            branches:
+              only: master
