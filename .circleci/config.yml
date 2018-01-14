@@ -35,6 +35,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: cat ~/.npmrc
       - run: npm install
       - run: npm run test-report
       - run: npm publish
