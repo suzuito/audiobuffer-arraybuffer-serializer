@@ -58,9 +58,9 @@ workflows:
           cron: "0 3 * * *" # utc
     jobs:
       - build:
-        filters:
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
 
 
 # Environment variables
