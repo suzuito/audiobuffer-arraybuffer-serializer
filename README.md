@@ -34,6 +34,8 @@ const Decoder = require('audiobuffer-arraybuffer-serializer').Decoder;
 
 # Usage
 
+[API Reference](https://suzuito.github.io/audiobuffer-arraybuffer-serializer/index.html)
+
 ### Classes
 
 - Encoder
@@ -70,6 +72,8 @@ encoder.execute(audioBuffer, arrayBuffer);
 decoder.execute(arrayBuffer, audioBuffer);
 ```
 
+# Examples
+
 # Development
 
 ### Build environment
@@ -102,6 +106,6 @@ npm run test-report
 open test/index.html
 ```
 
-# Support
+# Supported browser
 
 |Chrome|Firefox|

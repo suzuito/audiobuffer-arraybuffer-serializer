@@ -104,12 +104,16 @@
     
 
     
-    <h4 class="name" id="generateAudioBuffer"><span class="type-signature"></span>generateAudioBuffer<span class="signature">(conf)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createArrayBuffer"><span class="type-signature"></span>createArrayBuffer<span class="signature">(audioBuffer)</span><span class="type-signature"> &rarr; {ArrayBuffer}</span></h4>
     
 
     
 
 
+
+<div class="description">
+    Create an instance of ArrayBuffer from AudioBuffer object.
+</div>
 
 
 
@@ -144,13 +148,13 @@
 
         <tr>
             
-                <td class="name"><code>conf</code></td>
+                <td class="name"><code>audioBuffer</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">AudioBuffer</span>
 
 
             
@@ -201,7 +205,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="audiobuffer-arraybuffer-serializer.js.html">audiobuffer-arraybuffer-serializer.js</a>, <a href="audiobuffer-arraybuffer-serializer.js.html#line6">line 6</a>
+        <a href="audiobuffer-arraybuffer-serializer.js.html">audiobuffer-arraybuffer-serializer.js</a>, <a href="audiobuffer-arraybuffer-serializer.js.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -224,6 +228,272 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">ArrayBuffer</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createArrayBuffer"><span class="type-signature"></span>createArrayBuffer<span class="signature">(conf)</span><span class="type-signature"> &rarr; {ArrayBuffer}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Create an instance of ArrayBuffer from specified configuration.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>conf</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Configuration object for initialization of ArrayBuffer.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>length</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">AudioBuffer.length property. <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">see</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>numberOfChannels</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">AudioBuffer.numberOfChannels property. <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">see</a></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sampleRate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">AudioBuffer.sampleRate property. <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer">see</a></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="audiobuffer-arraybuffer-serializer.js.html">audiobuffer-arraybuffer-serializer.js</a>, <a href="audiobuffer-arraybuffer-serializer.js.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">ArrayBuffer</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -245,13 +515,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Configuration.html">Configuration</a></li><li><a href="Decoder.html">Decoder</a></li><li><a href="Encoder.html">Encoder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#generateAudioBuffer">generateAudioBuffer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Configuration.html">Configuration</a></li><li><a href="Decoder.html">Decoder</a></li><li><a href="Encoder.html">Encoder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#createArrayBuffer">createArrayBuffer</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 14 2018 14:36:37 GMT+0900 (JST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 14 2018 15:37:04 GMT+0900 (JST)
 </footer>
 
 <script> prettyPrint(); </script>
