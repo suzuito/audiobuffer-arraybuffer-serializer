@@ -43,3 +43,13 @@ jobs:
 
     steps:
       - run: ls .
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+  build_publish:
+    jobs:
+      - build
+      - publish
