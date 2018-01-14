@@ -30,14 +30,14 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-      - run: npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - run: npm login
-      - run: npm run publish
+      - run: npm install
+      - run: npm run test-report
+      - run: npm publish
 workflows:
   version: 2
   publish:

@@ -1,6 +1,6 @@
 {
   "name": "audiobuffer-arraybuffer-serializer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "AudioBuffer serializer",
   "keywords": [
     "audio",
@@ -31,8 +31,7 @@
     "test": "npm run build && nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text",
     "test-browser": "http-server",
-    "doc": "jsdoc src -d ./docs --readme ./README.md --configure ./jsdoc.json",
-    "publish": "npm publish"
+    "doc": "jsdoc src -d ./docs --readme ./README.md --configure ./jsdoc.json"
   },
   "engines": {
     "node": ">=8.0.0"
