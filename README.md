@@ -10,7 +10,7 @@ audiobuffer-arraybuffer-serializer
 AudioBuffer serializer.
 Provide a serializer between AudioBuffer and ArrayBuffer.
 
-About ArrayBuffer representation of AudioBuffer [see]().
+About ArrayBuffer representation of AudioBuffer [see](./IMG_0395.JPG).
 
 # Installation
 
