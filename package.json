@@ -31,7 +31,7 @@
     "test": "npm run build && nyc mocha --recursive",
     "test-report": "npm run test && nyc report --reporter=lcov --reporter=text",
     "test-browser": "http-server",
-    "doc": "jsdoc src -d ./docs --readme ./README.md"
+    "doc": "jsdoc src -d ./docs --readme ./README.md --configure ./jsdoc.json"
   },
   "engines": {
     "node": ">=8.0.0"

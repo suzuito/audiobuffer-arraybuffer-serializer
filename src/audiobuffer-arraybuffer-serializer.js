@@ -1,8 +1,3 @@
-/**
- * 
- * @param {*} conf 
- */
-
 function generateAudioBuffer(conf) {
   if (typeof AudioBuffer === 'undefined')
     return new require('audio-buffer')(conf);
@@ -104,6 +99,8 @@ export class Encoder extends Base {
    * 
    * @param {AudioBuffer} src 
    * @param {ArrayBuffer} [dst] If not specified, generate ArrayBuffer object in this method.
+   * @return {ArrayBuffer}
+   * @throws {InvalidBufferLengthError} If dst.byteLength does not match buffer length to store src.
    */
   execute(src, dst) {
     return super.execute(src, dst);
@@ -164,10 +161,14 @@ export class Decoder extends Base {
     validateOnDecoder(src, dst, this.littleEndian)
   }
   /**
-   * Serialize AudioBuffer to ArrayBuffer.
+   * Deserialize ArrayBuffer to AudioBuffer.
    * 
    * @param {ArrayBuffer} src 
    * @param {AudioBuffer} [dst] If not specified, generate AudioBuffer object in this method.
+   * @return {AudioBuffer}
+   * @throws {InvalidAudioBufferLengthError} If the length extracted from 'src' argument does not match dst.length.
+   * @throws {InvalidSampleRateError} If the sampleRate extracted from 'src' argument does not match dst.sampleRate.
+   * @throws {InvalidNumberOfChannelsError} If the numberOfChannels extracted from 'src' argument does not match dst.numberOfChannels.
    */
   execute(src, dst) {
     return super.execute(src, dst);
@@ -204,4 +205,34 @@ function decode(src, dst, littleEndian) {
     dst.copyToChannel(f32, c);
   }
   return dst;
+}
+
+export class ObjectKeyNotFoundError extends Error {
+  constructor(name, key) {
+    super(`'${name}' must have '${key}' property`);
+  }
+}
+
+/** Create an instance of ArrayBuffer from AudioBuffer object.
+ * @function createArrayBuffer
+ * @param {AudioBuffer} audioBuffer
+ * @return {ArrayBuffer}
+ */
+/** Create an instance of ArrayBuffer from specified configuration.
+ * @function createArrayBuffer
+ * @param {Object} conf Configuration object for initialization of ArrayBuffer.
+ * @param {String} conf.length AudioBuffer.length property. {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer see}
+ * @param {String} conf.numberOfChannels AudioBuffer.numberOfChannels property. {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer see}
+ * @param {String} conf.sampleRate AudioBuffer.sampleRate property. {@link https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer see}
+ * @return {ArrayBuffer}
+ */
+export function createArrayBuffer() {
+  if (typeof arguments[0] === 'object') {
+    let o = arguments[0];
+    if ('length' in o === false) throw new ObjectKeyNotFoundError('object', 'length');
+    if ('numberOfChannels' in o === false) throw new ObjectKeyNotFoundError('object', 'numberOfChannels');
+    if ('sampleRate' in o === false) throw new ObjectKeyNotFoundError('object', 'sampleRate');
+    return generateDestinationBufferOnEncoder(o);
+  }
+  throw new TypeError(`'arguments[0]' must be object`);
 }
