@@ -199,7 +199,7 @@ function decode(src, dst, littleEndian) {
   for (let c = 0; c < dst.numberOfChannels; c++) {
     let f32 = new Float32Array(dst.length);
     for (let i = 0; i < f32.length; i++) {
-      let j = 16 + (c * src.length * 4) + (i * 4);
+      let j = 16 + (c * dst.length * 4) + (i * 4);
       f32[i] = dv.getFloat32(j, littleEndian);
     }
     dst.copyToChannel(f32, c);
