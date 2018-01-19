@@ -1,4 +1,4 @@
-// audiobuffer-arraybuffer-serializer Version 0.0.35. Copyright 2018 Taito Suzuki <suzuito3@gmail.com>.
+// audiobuffer-arraybuffer-serializer Version 0.0.36. Copyright 2018 Taito Suzuki <suzuito3@gmail.com>.
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
